@@ -32,6 +32,7 @@ export class Products extends React.Component {
 
   render() {
     const filteredAndOrderedList = this.getFilteredAndOrderedList()
+    
     return <ProductsContainer>
       <ProductsHeader>
       </ProductsHeader>
@@ -39,6 +40,7 @@ export class Products extends React.Component {
         {filteredAndOrderedList.map((product) => {
           return <ProductCard
             product={product}
+            adicionarProduto={this.props.adicionarProduto}
           />
         })}
       </ProductsGrid>
