@@ -9,8 +9,15 @@ const ProductsContainer = styled.div`
 const ProductsHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 16px;
+  justify-content: flex-end;
+  p{
+
+ margin-right: 49%;
+  }
+  span{
+    margin-right: 2%;
+  }
 `
 
 const ProductsGrid = styled.div`
@@ -44,10 +51,17 @@ export class Products extends React.Component {
     
     return <ProductsContainer>
       <ProductsHeader>
+      <p>Quantidade de produtos:</p>
+      <span>Ordenação:</span>
+      
+      <select>
+        <option>crescente</option>
+        <option>descrescente</option>
+      </select>
       </ProductsHeader>
       <ProductsGrid>
-        {filteredAndOrderedList}
       
+        {filteredAndOrderedList}
       </ProductsGrid>
     </ProductsContainer>
   }

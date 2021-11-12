@@ -40,7 +40,7 @@ const products = [
     id: 5,
     name: 'Produto 5',
     price: 50,
-    photo: 'https://picsum.photos/200/200?a=4'
+    photo: 'https://picsum.photos/200/200?a=5'
   }
   
 ]
@@ -51,7 +51,7 @@ class App extends React.Component {
     carrinho:[]
   }
   adicionarProduto = postId => {
-   console.log("chamada", postId)
+ 
    this.setState(
      {
        carrinho:[...this.state.carrinho,postId]
@@ -64,6 +64,27 @@ class App extends React.Component {
     // console.log("novo carrinho", this.state.carrinho)
   }
 
+  removerCarrinho = (produtoId) =>{
+    console.log(produtoId)
+    let remove = this.props.carrinho.filter(produto =>{
+      if(produtoId === produto.id){
+        return produto
+      }
+    })
+   this.setState({ carrinho: remove })
+   
+}
+  componentDidUpdate() {
+    localStorage.setItem("tarefas", JSON.stringify(this.state.carrinho))
+}
+
+componentDidMount() {
+  const tarefasString = localStorage.getItem("tarefas")
+  const tarefasParse = JSON.parse(tarefasString)
+
+  this.setState({ carrinho: tarefasParse || [] })
+};
+
   render() {
     console.log("novo carrinho", this.state.carrinho)
     let carrinho=this.state.carrinho
@@ -71,13 +92,17 @@ class App extends React.Component {
     return (
       <AppContainer>
         <p>filter</p>
+        
         <Products 
           products={products}
           adicionarProduto={this.adicionarProduto}
         />
         
-        <ShoppingCart carrinho={carrinho} />
-
+        <ShoppingCart
+         carrinho={carrinho}
+         deletarProdutos={this.removerCarrinho}
+         />
+        
       </AppContainer>
     )
   }  

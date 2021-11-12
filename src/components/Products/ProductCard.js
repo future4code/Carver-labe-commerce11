@@ -22,7 +22,7 @@ export class ProductCard extends React.Component {
     const product = this.props.product
     // console.log(props.adicionar)
     return <CardContainer>
-      <img src={product.photo}/>
+      <img src={product.photo} alt="imagem do produto"/>
       <CardInfo>
         <p>{product.name}</p>
         <p>R${product.price},00</p>
