@@ -52,7 +52,10 @@ class App extends React.Component {
   }
   adicionarProduto = postId => {
    console.log("chamada", postId)
-   this.setState({carrinho:[...this.state.carrinho,postId]})
+   this.setState(
+     {
+       carrinho:[...this.state.carrinho,postId]
+    })
     // const novaListaDeCarinho = products.filter(post => {
     //   return postId === post.id;
     // });
@@ -64,6 +67,7 @@ class App extends React.Component {
   render() {
     console.log("novo carrinho", this.state.carrinho)
     let carrinho=this.state.carrinho
+  
     return (
       <AppContainer>
         <p>filter</p>

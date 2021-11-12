@@ -7,23 +7,38 @@ const Carrinho=styled.div`
         margin: 12px;
     }
 `
-const RenderizarCarrinho=()=>{
-  this.props.carinho.map=((produto)=>{
-    return <p>produto</p>
-  })
-}
+
 
 class ShoppingCart extends React.Component {
     state = {
       carrinho:[]
     }
-  
+    renderizarCarrinho=()=>{
+      // let produtosCarrinho = this.props.carrinho 
+      // ? this.props.carrinho.map((teste) => {
+      //   return (
+      //     <p>{teste.name}</p>
+      //   )
+      // }) 
+      // : <p>sem produtos</p>
+      // console.log(produtosCarrinho)
+
+      // return produtosCarrinho
+      let resposta = this.props.carrinho
+      ? this.props.carrinho.map((produto)=>{
+        return (<p>{produto.name}</p>)
+      }) 
+      : <p>"sem produtos no carrinho" </p>
+      //
+      return resposta
+    }
     render() {
+      // console.log("carrinho",this.props.carrinho)
       return (
         <Carrinho>
             <h3>Carrinho:</h3>
        
-        {this.props.Carrinho}
+       {this.renderizarCarrinho()}
         </Carrinho>
       )
     }  
