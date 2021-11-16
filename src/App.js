@@ -2,6 +2,7 @@ import React from 'react';
 import { Products } from './components/Products/Products';
 import styled from 'styled-components';
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart"
+import { Filters } from './components/Filters/Filters';
 
 
 const AppContainer = styled.div`
@@ -48,32 +49,60 @@ const products = [
 
 class App extends React.Component {
   state = {
-    carrinho:[]
+    carrinho:[],
+    query: "",
+    minPrice: "",
+    maxPrice: "",
+    sortingParameter: "title",
+    order: 1
   }
-  adicionarProduto = postId => {
+  adicionarProduto = (event) => {
+    event.preventDefault()
+   let produtoSelecionado=products.filter((products)=>{
+     return products.id== event.target.value
+   })
+   let controle=0
+   let carrinho1=this.state.carrinho.map((itemCarrinho)=>{
+     if (itemCarrinho.produto.id == event.target.value){
+        itemCarrinho.quantidade++
+        controle++
+     }
+     return itemCarrinho
+   })
  
-   this.setState(
-     {
-       carrinho:[...this.state.carrinho,postId]
-    })
-    // const novaListaDeCarinho = products.filter(post => {
-    //   return postId === post.id;
-    // });
-    // console.log("produto", novaListaDeCarinho)
-    // this.setState({ carrinho: [...this.state.carrinho,novaListaDeCarinho] });
-    // console.log("novo carrinho", this.state.carrinho)
+    if (controle==0){
+      this.setState({
+        carrinho:[...this.state.carrinho,{
+        quantidade:1,
+        produto:produtoSelecionado[0]
+      }]
+      })
+    }else{
+     
+      this.setState({
+        carrinho:carrinho1
+      })
+    }
   }
 
+  
+
   removerCarrinho = (produtoId) =>{
-    console.log(produtoId)
-    let remove = this.props.carrinho.filter(produto =>{
-      if(produtoId === produto.id){
-        return produto
+   
+    let remove = this.state.carrinho.filter((produto) =>{
+      if((produtoId === produto.produto.id) && (produto.quantidade>1)){
+        return produto.quantidade--
       }
     })
    this.setState({ carrinho: remove })
-   
 }
+
+  // somarValorTotal=(total, item)=>{
+  //     let totalAPagar= total + (item.produto.price * item.quantidade);
+  //    this.setState({carrinho:[...this.state.carrinho,{valorTotal:totalAPagar}]})
+  // }
+
+
   componentDidUpdate() {
     localStorage.setItem("tarefas", JSON.stringify(this.state.carrinho))
 }
@@ -84,18 +113,65 @@ componentDidMount() {
 
   this.setState({ carrinho: tarefasParse || [] })
 };
+updateQuery = (ev) => {
+  this.setState({
+     query: ev.target.value
+  })
+}
+
+updateMinPrice = (ev) => {
+  this.setState({
+     minPrice: ev.target.value
+  })
+}
+
+updateMaxPrice = (ev) => {
+  this.setState({
+     maxPrice: ev.target.value
+  })
+}
+
+updateSortingParameter = (ev) => {
+  this.setState({
+     sortingParameter: ev.target.value
+  })
+}
+
+updateOrder = (ev) => {
+  this.setState({
+     order: ev.target.value
+  })
+}
 
   render() {
-    console.log("novo carrinho", this.state.carrinho)
+    console.log("jesus amado", this.state.carrinho)
+  
     let carrinho=this.state.carrinho
   
     return (
       <AppContainer>
-        <p>filter</p>
+         <Filters
+            query={this.state.query}
+            updateQuery={this.updateQuery}
+            updateMinPrice={this.updateMinPrice}
+            updateMaxPrice={this.updateMaxPrice}
+            minPrice={this.state.minPrice}
+            maxPrice={this.state.maxPrice}
+         />
         
         <Products 
           products={products}
           adicionarProduto={this.adicionarProduto}
+          query={this.state.query}
+            updateQuery={this.updateQuery}
+            updateMinPrice={this.updateMinPrice}
+            updateMaxPrice={this.updateMaxPrice}
+            updateSortingParameter={this.updateSortingParameter}
+            updateOrder={this.updateOrder}
+            minPrice={this.state.minPrice}
+            maxPrice={this.state.maxPrice}
+            sortingParameter={this.state.sortingParameter}
+            order={this.state.order}
         />
         
         <ShoppingCart

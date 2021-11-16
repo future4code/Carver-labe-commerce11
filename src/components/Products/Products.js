@@ -33,16 +33,32 @@ export class Products extends React.Component {
   }
 
   getFilteredAndOrderedList = () => {
-   let product = this.props.products.map((product)=>{
-     return (
-      <ProductCard
-        product={product}
-        adicionarProduto={this.props.adicionarProduto}
-      />
-     )
-   })
+    let product = this.props.products
+      .filter(job => {
+        return job.name.toLowerCase().includes(this.props.query) 
+      })
+      .filter(job => {
+        return this.props.minPrice === "" || job.price >= this.props.minPrice
+      })
+      .filter(job => {
+        return this.props.maxPrice === "" || job.price <= this.props.maxPrice
+      })
+      .sort((currentJob, nextJob) => {
+        switch (this.props.sortingParameter) {
+         
+          default:
+            return this.props.order * (currentJob.price - nextJob.price)
+        }
+      }).map((product) => {
+        return (
+          <ProductCard
+            product={product}
+            adicionarProduto={this.props.adicionarProduto}
+          />
+        )
+      })
 
-   return product
+    return product
 
   }
 
@@ -51,16 +67,23 @@ export class Products extends React.Component {
     
     return <ProductsContainer>
       <ProductsHeader>
-      <p>Quantidade de produtos:</p>
-      <span>Ordenação:</span>
-      
-      <select>
-        <option>crescente</option>
-        <option>descrescente</option>
-      </select>
+        <p>Quantidade de Produtos:{filteredAndOrderedList.length}</p>
+        <span>
+          <label for="sort">Ordenação: </label>
+        </span>
+
+        <select
+          name="sort"
+          value={this.props.order}
+          onChange={this.props.updateOrder}
+        >
+          <option value={1}>Crescente</option>
+          <option value={-1}>Decrescente</option>
+
+        </select>
       </ProductsHeader>
       <ProductsGrid>
-      
+
         {filteredAndOrderedList}
       </ProductsGrid>
     </ProductsContainer>

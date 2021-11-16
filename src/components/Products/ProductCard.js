@@ -20,13 +20,12 @@ const CardInfo = styled.div`
 export class ProductCard extends React.Component {
   render() {
     const product = this.props.product
-    // console.log(props.adicionar)
     return <CardContainer>
       <img src={product.photo} alt="imagem do produto"/>
       <CardInfo>
         <p>{product.name}</p>
         <p>R${product.price},00</p>
-        <button onClick={()=>this.props.adicionarProduto(product)}>{product.id}</button>
+        <button value={product.id} onClick={this.props.adicionarProduto}>{product.id}</button>
       </CardInfo>
     </CardContainer>
   }

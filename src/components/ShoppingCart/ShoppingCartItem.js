@@ -26,9 +26,10 @@ class ShoppingCartItem extends React.Component {
       ? this.props.produtosCarrinho.map((produto)=>{
         return (
             <div>
-            <p> {`${produto.name}`}</p>   
-            <p> {`R$: ${produto.price}`}</p> 
-            <button onClick = {()=>this.props.removerCarrinho(produto.id)}>Remove</button>
+            <span>{`${produto.quantidade}  x `}</span>
+            <span> {`${produto.produto.name}`}</span>   
+            <span> {`R$: ${produto.produto.price}  `}</span> 
+            <button onClick = {()=>this.props.deletarProdutos(produto.produto.id)}>x</button>
             </div>
        )
       }) 
@@ -39,15 +40,10 @@ class ShoppingCartItem extends React.Component {
 
 
     render() {
-
-    console.log("carrinho ",this.props.produtosCarrinho)
-    const carrinhoEstado= this.props.produtosCarrinho
-    console.log("estado do carrinho ",carrinhoEstado)
-    // this.setState({carrinho:[...this.state.carrinho,carrinhoEstado]})
       return (
         <Carrinho>
        {this.renderizarCarrinho()}
-       <p>Total a pagar: {this.state.conta}</p>
+       <p>Total a pagar: </p>
      
         </Carrinho>
       )
