@@ -33,13 +33,13 @@ class ShoppingCart extends React.Component {
     //   return resposta
     // }
     render() {
-  
+      
       return (
         <Carrinho>
             <h3>Carrinho:</h3>
        <ShoppingCartItem
         produtosCarrinho ={this.props.carrinho }
-        deletarProdutos={this.deletarProdutos}
+        deletarProdutos={this.props.deletarProdutos}
        />
         </Carrinho>
       )
