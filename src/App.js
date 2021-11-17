@@ -181,7 +181,7 @@ class App extends React.Component {
         <Products
           products={products}
           adicionarProduto={this.adicionarProduto}
-          query={this.state.query}
+          query={this.state.query.toLowerCase()}
           updateQuery={this.updateQuery}
           updateMinPrice={this.updateMinPrice}
           updateMaxPrice={this.updateMaxPrice}

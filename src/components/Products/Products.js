@@ -40,7 +40,7 @@ export class Products extends React.Component {
   getFilteredAndOrderedList = () => {
     let product = this.props.products
       .filter(job => {
-        return job.name.toLowerCase().includes(this.props.query) 
+        return job.name.toLowerCase().includes(this.props.query)
       })
       .filter(job => {
         return this.props.minPrice === "" || job.price >= this.props.minPrice
