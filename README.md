@@ -5,5 +5,5 @@
 
 ## O grupo sentiu muita dificuldade no desenvolvimento do projeto, principalmente na parte do carrinho, em adicionar, retirar e mostrar o valor total do carrinho.Só conseguimos terminar depois do prazo, peço perdão aos monitores. 
 
-### LINK DO SURGE:  womanly-hot.surge.sh
+### LINK DO SURGE:   handy-love.surge.sh
 
