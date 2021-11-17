@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import {deletar} from "../../imagens/highlight_off_black_24dp.svg" 
+
 
 const Carrinho = styled.div`  
-    border: 1px solid black;
+   
     padding: 10px;
     p{
         margin: 2px;
     }
 `
-const produtosDePreco = styled.p` 
-   padding: 20px;
-    border: 1px solid black;
+const botao = styled.button` 
+   border:none;
+   background-color:  #64f7ce;
 `
 
 

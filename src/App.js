@@ -10,6 +10,7 @@ const AppContainer = styled.div`
   grid-template-columns: 1fr 3fr 1fr;
   padding: 16px;
   gap: 8px;
+  background-color: #CAFFFB;
 `;
 
 const products = [

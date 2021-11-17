@@ -2,15 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 const FiltersContainer = styled.div`
-  border: 1px solid black;
+  background-color: #32BF84;
+  height: 230px;
+  border-radius: 20px;
+  margin-top: 26%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 12px;
   input{
+      background-color:#CAFFFB;
+      border: none;
+      border-radius: 8px;
+      height: 17px;
       width: 200px;
   }
-
+  label{
+    margin-top: 8px;
+  }
 `
  export class Filters extends React.Component {
      render(){

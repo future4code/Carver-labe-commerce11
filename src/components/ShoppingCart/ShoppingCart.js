@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import ShoppingCartItem from "./ShoppingCartItem";
 const Carrinho=styled.div`  
-    border: 1px solid black;
+  background-color: #32BF84;
+  height: 200px;
+  border-radius: 20px;
+  margin-top: 26%;
     h3{
         margin: 12px;
     }

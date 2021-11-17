@@ -18,6 +18,11 @@ const ProductsHeader = styled.div`
   span{
     margin-right: 2%;
   }
+  select{
+    border: none;
+    background-color:  #64f7ce;
+    border-radius: 12px;
+  }
 `
 
 const ProductsGrid = styled.div`
